@@ -1,10 +1,11 @@
-'use strict';
-/* global describe it */
+import * as t from "https://deno.land/std/testing/asserts.ts";
+import { Buffer } from "https://code4fukui.github.io/safer-buffer/safer.js";
+import * as asn1 from "../lib/asn1.js";
 
-const assert = require('assert');
-const asn1 = require('..');
+const assert = t;
 
-const Buffer = require('safer-buffer').Buffer;
+const describe = (name, func) => func();
+const it = (name, func) => Deno.test(name, func);
 
 describe('asn1.js DER decoder', function() {
   it('should propagate implicit tag', function() {
