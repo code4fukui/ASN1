@@ -7,7 +7,14 @@ ASN.1 DER Encoder/Decoder and DSL.
 Define model:
 
 ```javascript
-import * as asn from "./lib/asn1.js";
+import * as asn from "https://code4fukui.github.io/ASN1/lib/asn1.js";
+
+const Bio = asn.define('Bio', function() {
+  this.seq().obj(
+    this.key('time').gentime(),
+    this.key('description').octstr()
+  );
+});
 
 const Human = asn.define('Human', function() {
   this.seq().obj(
@@ -16,13 +23,6 @@ const Human = asn.define('Human', function() {
     this.key('age').int(),
     this.key('gender').enum({ 0: 'male', 1: 'female' }),
     this.key('bio').seqof(Bio)
-  );
-});
-
-const Bio = asn.define('Bio', function() {
-  this.seq().obj(
-    this.key('time').gentime(),
-    this.key('description').octstr()
   );
 });
 ```
