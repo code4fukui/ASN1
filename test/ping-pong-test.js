@@ -1,12 +1,9 @@
-'use strict';
 /* global describe it */
 
-const assert = require('assert');
-const asn1 = require('..');
-const fixtures = require('./fixtures');
-const jsonEqual = fixtures.jsonEqual;
-
-const Buffer = require('safer-buffer').Buffer;
+import { assert, describe, it } from "https://code4fukui.github.io/describe/describe.js";
+import * as asn1 from "../lib/asn1.js";
+import { Buffer } from "https://code4fukui.github.io/safer-buffer/safer.js";
+import { jsonEqual } from "./fixtures.js";
 
 describe('asn1.js ping/pong', function() {
   function test(name, model, input, expected) {

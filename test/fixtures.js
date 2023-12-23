@@ -1,10 +1,8 @@
-'use strict';
 /* global describe it */
 
-const assert = require('assert');
+import { assert } from "https://code4fukui.github.io/describe/describe.js";
 
-function jsonEqual(a, b) {
+export function jsonEqual(a, b) {
   assert.deepEqual(JSON.parse(JSON.stringify(a)),
                    JSON.parse(JSON.stringify(b)));
-}
-exports.jsonEqual = jsonEqual;
+};

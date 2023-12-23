@@ -1,13 +1,13 @@
 'use strict';
 /* global describe it */
 
-const assert = require('assert');
-const asn1 = require('..');
-const bn = asn1.bignum;
-const fixtures = require('./fixtures');
-const jsonEqual = fixtures.jsonEqual;
+import { assert, describe, it } from "https://code4fukui.github.io/describe/describe.js";
+import * as asn1 from "../lib/asn1.js";
+import { BN } from "https://code4fukui.github.io/bn.js/lib/bn.js";
+import { Buffer } from "https://code4fukui.github.io/safer-buffer/safer.js";
+import { jsonEqual } from "./fixtures.js";
 
-const Buffer = require('safer-buffer').Buffer;
+const bn = BN; //asn1.bignum;
 
 describe('asn1.js error', function() {
   describe('encoder', function() {

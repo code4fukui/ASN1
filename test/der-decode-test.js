@@ -1,11 +1,6 @@
-import * as t from "https://deno.land/std/testing/asserts.ts";
+import { assert, describe, it } from "https://code4fukui.github.io/describe/describe.js";
 import { Buffer } from "https://code4fukui.github.io/safer-buffer/safer.js";
 import * as asn1 from "../lib/asn1.js";
-
-const assert = t;
-
-const describe = (name, func) => func();
-const it = (name, func) => Deno.test(name, func);
 
 describe('asn1.js DER decoder', function() {
   it('should propagate implicit tag', function() {
@@ -69,8 +64,9 @@ describe('asn1.js DER decoder', function() {
     const A = asn1.define('A', function() {
       this.optional().use(B);
     });
-
+    
     const out = A.decode(Buffer.from('020101', 'hex'), 'der');
+    //console.log(A, A.decode, "OUT!!", out)
     assert.equal(out.toString(10), '1');
   });
 
