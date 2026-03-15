@@ -62,6 +62,4 @@ console.log(human);
 
 ## ライセンス
 
-このソフトウェアはMITライセンスの下にあります。
-
-Copyright Fedor Indutny, 2017.
+MITライセンス — [LICENSE](LICENSE) を参照してください。
