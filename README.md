@@ -1,5 +1,7 @@
 # ASN1.js
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 ASN.1 DER Encoder/Decoder and DSL.
 
 ## Example

@@ -1,6 +1,6 @@
 # ASN1.js
 
-ASN.1 DER Encoder/DecoderとDSL。
+ASN.1 DER Encoder/DecoderとDSL。ASN.1はデータ構造定義の標準フォーマットで、このライブラリではそのエンコーディングとデコーディング、およびDSLを提供しています。
 
 ## デモ
 
@@ -49,15 +49,6 @@ const output = Human.encode({
 ```javascript
 const human = Human.decode(output, 'der');
 console.log(human);
-/*
-{ firstName: <Buffer 54 68 6f 6d 61 73>,
-  lastName: <Buffer 41 6e 64 65 72 73 6f 6e>,
-  age: 28,
-  gender: 'male',
-  bio:
-   [ { time: 922820400000,
-       description: <Buffer 66 72 65 65 64 6f 6d 20 6f 66 20 6d 69 6e 64> } ] }
-*/
 ```
 
 ### 部分的なデコード
@@ -67,10 +58,6 @@ console.log(human);
 ```javascript
 const human = Human.decode(output, 'der', { partial: true });
 console.log(human);
-/*
-{ result: { ... },
-  errors: [ ... ] }
-*/
 ```
 
 ## ライセンス
