@@ -1,10 +1,10 @@
 # ASN1.js
 
-ASN.1 DER Encoder/DecoderとDSL。ASN.1はデータ構造定義の標準フォーマットで、このライブラリではそのエンコーディングとデコーディング、およびDSLを提供しています。
+ASN.1 DER Encoder/Decoderとドメイン特化言語(DSL)を提供するライブラリです。ASN.1はデータ構造定義の標準フォーマットで、このライブラリではそのエンコーディングとデコーディング、およびDSLを実装しています。
 
 ## デモ
 
-モデルの定義:
+データモデルの定義:
 
 ```javascript
 import * as asn from "https://code4fukui.github.io/ASN1/lib/asn1.js";
@@ -27,13 +27,13 @@ const Human = asn.define('Human', function() {
 });
 ```
 
-データのエンコード:
+データのエンコーディング:
 
 ```javascript
 const output = Human.encode({
   firstName: 'Thomas',
   lastName: 'Anderson',
-  age: 28,
+  age: 28, 
   gender: 'male',
   bio: [
     {
@@ -44,16 +44,16 @@ const output = Human.encode({
 }, 'der');
 ```
 
-データのデコード:
+データのデコーディング:
 
 ```javascript
 const human = Human.decode(output, 'der');
 console.log(human);
 ```
 
-### 部分的なデコード
+### 部分デコーディング
 
-最初のエラーで停止することなく、データをパースすることができます。このためには以下のように呼び出します。
+最初のエラーで停止することなく、データを部分的にパースすることができます。このためには以下のように呼び出します。
 
 ```javascript
 const human = Human.decode(output, 'der', { partial: true });

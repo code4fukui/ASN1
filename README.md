@@ -51,29 +51,15 @@ Decode data:
 ```javascript
 const human = Human.decode(output, 'der');
 console.log(human);
-/*
-{ firstName: <Buffer 54 68 6f 6d 61 73>,
-  lastName: <Buffer 41 6e 64 65 72 73 6f 6e>,
-  age: 28,
-  gender: 'male',
-  bio:
-   [ { time: 922820400000,
-       description: <Buffer 66 72 65 65 64 6f 6d 20 6f 66 20 6d 69 6e 64> } ] }
-*/
 ```
 
 ### Partial decode
 
-Its possible to parse data without stopping on first error. In order to do it,
-you should call:
+It's possible to parse data without stopping on the first error. To do this, call:
 
 ```javascript
 const human = Human.decode(output, 'der', { partial: true });
 console.log(human);
-/*
-{ result: { ... },
-  errors: [ ... ] }
-*/
 ```
 
 ## License
