@@ -1,10 +1,14 @@
 # ASN1.js
 
-ASN.1 DER Encoder/Decoder and DSL.
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
+ASN.1 DER/PEM Encoder/Decoder with a fluent DSL for modern JavaScript environments (Deno, browsers, Node.js).
 
 ## Example
 
-Define model:
+Define a schema, encode a JavaScript object, and decode it back.
+
+**1. Define the model:**
 
 ```javascript
 import * as asn from "https://code4fukui.github.io/ASN1/lib/asn1.js";
@@ -27,7 +31,7 @@ const Human = asn.define('Human', function() {
 });
 ```
 
-Encode data:
+**2. Encode data to DER format:**
 
 ```javascript
 const output = Human.encode({
@@ -44,57 +48,54 @@ const output = Human.encode({
 }, 'der');
 ```
 
-Decode data:
+**3. Decode the DER buffer:**
 
 ```javascript
 const human = Human.decode(output, 'der');
 console.log(human);
 /*
-{ firstName: <Buffer 54 68 6f 6d 61 73>,
+{
+  firstName: <Buffer 54 68 6f 6d 61 73>,
   lastName: <Buffer 41 6e 64 65 72 73 6f 6e>,
   age: 28,
   gender: 'male',
-  bio:
-   [ { time: 922820400000,
-       description: <Buffer 66 72 65 65 64 6f 6d 20 6f 66 20 6d 69 6e 64> } ] }
+  bio: [
+    {
+      time: 922820400000,
+      description: <Buffer 66 72 65 65 64 6f 6d 20 6f 66 20 6d 69 6e 64>
+    }
+  ]
+}
 */
 ```
 
-### Partial decode
+## Features
 
-Its possible to parse data without stopping on first error. In order to do it,
-you should call:
+*   **Declarative DSL:** Define complex ASN.1 structures with a simple, chained API.
+*   **Multiple Encodings:** Supports both DER (Distinguished Encoding Rules) and PEM encoding/decoding.
+*   **Rich Type Support:** Includes `seq`, `seqof`, `set`, `int`, `enum`, `octstr`, `bitstr`, `gentime`, `utctime`, `objid`, and more.
+*   **Robust Error Handling:** Perform partial decoding to parse data without stopping on the first error.
+*   **RFC Implementations:** Provides pre-defined structures for [RFC 5280 (X.509 Certificates)](rfc/5280) and [RFC 2560 (OCSP)](rfc/2560).
+
+### Partial Decoding
+
+To parse data without stopping on the first error, use the `{ partial: true }` option. The result will be an object containing the partially decoded `result` and an array of `errors`.
 
 ```javascript
-const human = Human.decode(output, 'der', { partial: true });
-console.log(human);
+const data = Human.decode(output, 'der', { partial: true });
+console.log(data);
 /*
-{ result: { ... },
-  errors: [ ... ] }
+{
+  result: { ... },
+  errors: [ ... ]
+}
 */
 ```
 
-#### LICENSE
+## Acknowledgements
 
-This software is licensed under the MIT License.
+This project is a fork of the original [asn1.js by Fedor Indutny](https://github.com/indutny/asn1.js), adapted for modern ES Module environments.
 
-Copyright Fedor Indutny, 2017.
+## License
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to permit
-persons to whom the Software is furnished to do so, subject to the
-following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT License — see [LICENSE](LICENSE).
